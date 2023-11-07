@@ -6,14 +6,13 @@ from astroplan.plots import plot_altitude
 from astropy.coordinates import SkyCoord
 
 
-    # Create an observer for the Allen Telescope Array (latitude, longitude, elevation)
 observer = Observer.at_site("Allen Telescope Array")
 ra = input("Enter source Right Ascension (RA) in degrees: ")
 dec = input("Enter source Declination (DEC) in degrees: ")
 date_input = input("Enter date in YYYY-MM-DD format (or leave empty for the current date): ")
 
 if date_input:
-    # Parse date input and ensure it's in the correct format
+    
     try:
         date = Time(date_input)
     except ValueError:
@@ -28,11 +27,11 @@ set_time = observer.target_set_time(date, target)
 print(rise_time.iso)
 print(set_time.iso)
 j=0
-# Creating an empty list
+
 arr = []
 elevation=[]
 
-# Using for loop to fill the list
+
 for t in range(24):
     s=str(t)
     final='2000-06-15 '+s+':30:00'
