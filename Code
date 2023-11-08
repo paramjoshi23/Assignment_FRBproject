@@ -34,7 +34,7 @@ elevation=[]
 
 for t in range(24):
     s=str(t)
-    final='2000-06-15 '+s+':30:00'
+    final='2023-11-08 '+s+':30:00'
     arr.append(s)
     time=Time(final)
     elevation.append(observer.altaz(time, target).alt.deg)
