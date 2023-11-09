@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 from astroplan import Observer, FixedTarget
 from astropy.time import Time
-import numpy as np
-from astroplan.plots import plot_altitude
 from astropy.coordinates import SkyCoord
-
 
 observer = Observer.at_site("Allen Telescope Array")
 ra = input("Enter source Right Ascension (RA) in degrees: ")
@@ -12,7 +9,7 @@ dec = input("Enter source Declination (DEC) in degrees: ")
 date_input = input("Enter date in YYYY-MM-DD format (or leave empty for the current date): ")
 
 if date_input:
-    
+
     try:
         date = Time(date_input)
     except ValueError:
@@ -21,23 +18,21 @@ if date_input:
 else:
     date = Time.now()
 
-target = FixedTarget(SkyCoord(ra, dec),"Target")
+target = FixedTarget(SkyCoord(ra, dec), "Target")
 rise_time = observer.target_rise_time(date, target)
 set_time = observer.target_set_time(date, target)
-print(rise_time.iso)
-print(set_time.iso)
-j=0
+print("Rise Time of the celestial body is:", rise_time.iso)
+print("Set Time of the celestial body is:", set_time.iso)
 
 arr = []
-elevation=[]
-
+elevation = []
 
 for t in range(24):
-    s=str(t)
-    final='2023-11-08 '+s+':30:00'
+    s = str(t)
+    final = '2023-11-09 ' + s + ':30:00'
     arr.append(s)
-    time=Time(final)
+    time = Time(final)
     elevation.append(observer.altaz(time, target).alt.deg)
-    
-plt.plot(arr,elevation)
+
+plt.plot(arr, elevation)
 plt.show()
